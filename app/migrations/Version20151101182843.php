@@ -21,8 +21,10 @@ class Version20151101182843 extends AbstractMigration
         $hotelTable->addColumn('address', 'string', ['length' => 150]);
         $hotelTable->addColumn('mobile', 'string', ['length' => 20]);
         $hotelTable->addColumn('phone', 'string', ['length' => 20]);
-        $hotelTable->addColumn('date_created', 'date');
-        $hotelTable->addColumn('date_modified', 'date');
+        $hotelTable->addColumn('date_created', 'datetime',[
+            'columnDefinition' => 'timestamp default current_timestamp'
+        ]);
+        $hotelTable->addColumn('date_modified', 'datetime');
         $hotelTable->setPrimaryKey(['hotel_id']);
 
         $roomTable = $schema->createTable('rooms');
@@ -33,19 +35,29 @@ class Version20151101182843 extends AbstractMigration
         $roomTable->addColumn('hotel_id','integer',['length'=>10]);
         $roomTable->addColumn('roomtype_id','integer',['length'=>10]);
         $roomTable->addColumn('user_id','integer',['length'=>10]);
-        $roomTable->addColumn('date_created', 'date');
-        $roomTable->addColumn('date_modified', 'date');
+        $roomTable->addColumn('date_created', 'datetime',[
+            'columnDefinition' => 'timestamp default current_timestamp'
+        ]);
+        $roomTable->addColumn('date_modified', 'datetime');
         $roomTable->setPrimaryKey(['room_id']);
 
         $rtypeTable = $schema->createTable('roomtypes');
         $rtypeTable->addColumn('roomtype_id','integer',['autoincrement' => true, 'length' => 10]);
         $rtypeTable->addColumn('description','string',['length'=>50]);
+        $rtypeTable->addColumn('date_created', 'datetime',[
+            'columnDefinition' => 'timestamp default current_timestamp'
+        ]);
+        $rtypeTable->addColumn('date_modified', 'datetime');
         $rtypeTable->setPrimaryKey(['roomtype_id']);
         
         $userTable = $schema->createTable('users');
         $userTable->addColumn('user_id','integer',['autoincrement' => true, 'length' => 10]);
         $userTable->addColumn('name','string',['length'=> 100]);
         $userTable->addColumn('password','string',['length'=> 255]);
+        $userTable->addColumn('date_created', 'datetime',[
+            'columnDefinition' => 'timestamp default current_timestamp'
+        ]);
+        $userTable->addColumn('date_modified', 'datetime');
         $userTable->setPrimaryKey(['user_id']);
     }
 
