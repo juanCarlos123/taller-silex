@@ -9,17 +9,17 @@ $app->get('/', function (Request $request) {
 $app->match('/addHotel', function(Request $request) use ($app) {
 
     $form = $app['form.factory']->createBuilder('form')
-        ->add('name','text'),
-        ->add('address','text'),
-        ->add('phone','text'),
+        ->add('name','text')
+        ->add('address','text')
+        ->add('phone','text')
         ->getForm()
         ;
-    error_log(date('Y'));
 
     $form->handleRequest($request);
 
     if($form->isValid()) {
         $data = $form->getData();
+        $app['db']->insert('hotels',$data);
         error_log(print_r($data,true));
     }
 

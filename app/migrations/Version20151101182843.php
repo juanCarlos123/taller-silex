@@ -18,10 +18,12 @@ class Version20151101182843 extends AbstractMigration
         $hotelTable = $schema->createTable('hotels');
         $hotelTable->addColumn('hotel_id', 'integer', ['autoincrement' => true, 'length' => 10]);
         $hotelTable->addColumn('name', 'string', ['length' => 30]);
-        $hotelTable->addColumn('addres', 'string', ['length' => 150]);
+        $hotelTable->addColumn('address', 'string', ['length' => 150]);
         $hotelTable->addColumn('mobile', 'string', ['length' => 20]);
         $hotelTable->addColumn('phone', 'string', ['length' => 20]);
-        $hotelTable->addColumn('date_created', 'date');
+        $hotelTable->addColumn('date_created', 'datetime', [
+            'columnDefinition' => 'timestamp default current_timestamp'
+        ]);
         $hotelTable->addColumn('date_modified', 'date');
         $hotelTable->setPrimaryKey(['hotel_id']);
 
