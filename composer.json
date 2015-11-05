@@ -10,7 +10,11 @@
         }
     ],
     "autoload":{
-        "psr-0": {"": "src/"}
+        "psr-0": {
+            "": "src/",
+            "Controllers": "src/Controllers",
+            "Models": "src/Models"
+        }
     },
     "require": {
         "silex/silex": "~1.3",
