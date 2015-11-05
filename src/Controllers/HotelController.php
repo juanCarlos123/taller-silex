@@ -48,18 +48,50 @@ Class HotelController
             ->getForm()
             ;
 
-        $form->handleRequest($request);
+        $title = 'hoteles en el sistema';
 
-        if($form->isValid()) {
-            $data = $form->getData();
-            $this->hotelModel->saveHotel($data);
-            return $this->view->render('index.twig',['form' => $form->createView()]);
+        if($request->getMethod() == "POST"){
+            $form->handleRequest($request);
+            if($form->isValid()) {
+                $data = $form->getData();
+                $this->hotelModel->saveHotel($data);
+                return $this->view->render('index.twig',[
+                    'message' => 'hotel salvado correctamente',
+                    'title' => $title,
+                    'hotels' => $this->hotelModel->getHotels()
+                ]);
+            }
+
+            return $this->view->render('index.twig',[
+                'message' => 'Error al guardar el hotel',
+                'title' => $title,
+                'hotels' => $this->hotelModel->getHotels()
+            ]);
         }
 
-        return $this->view->render('index.twig', ['form' => $form->createView()]);
+        return $this->view->render('edit.twig', ['form' => $form->createView(),'message' => '','title' => 'Editar Hotel']);
     }
 
     public function editHotel(Request $request) {
+        $title = 'Hoteles en el sistema';
+        if($request->getMethod() == "POST") {
+            $form->handleRequest($request);
+            if($form->isValid()) {
+                $data = $form->getData();
+                $this->hotelModel->updateHotel($data);
+                return $this->view->render('index.twig',[
+                    'message' => 'Hotel actualizado correctamente',
+                    'title' => $title,
+                    'hotels' => $this->hotelModel->getHotels()
+                ]);
+            }
+            return $this->view->render('index.twig',[
+                'message' => "error al actualizar el hotel",
+                'title' => $title,
+                'hotels' => $this->hotelModel->getHotels()
+            ]);
+            
+        }
         $id = $request->get('id_hotel');
         $hotel = $this->HotelModel->getHotel($id);
         if(!empty($hotels)) {
@@ -73,6 +105,18 @@ Class HotelController
                 ;*/
                 return $this->view->render('index.twig',['form' => '']);
         }
-        return $this->view->render('index.twig',['error' => "Hotel Invalido", 'form' => '']);
+        return $this->view->render('index.twig',[
+            'message' => "Hotel Invalido",
+            'title' => $title,
+            'hotels' => $this->hotelModel->getHotels()
+        ]);
+    }
+        
+    public function indexHotels() {
+        return $this->view->render('index.twig',[
+            'message' => '',
+            'title' => 'hoteles en el sistema',
+            'hotels' => $this->hotelModel->getHotels()
+        ]);
     }
 }

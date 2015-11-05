@@ -27,6 +27,25 @@ Class HotelModel
         $this->db = $db;
     }
 
+    /**
+     * updateHotel 
+     * 
+     * @param mixed $data 
+     * @param mixed $id 
+     * @access public
+     * @return void
+     */
+    public function updateHotel($data, $id = null) {
+        if(!is_null($id)){
+            $result = $this->db->update($data,['id' => $id]);
+            if($result < 1) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
     public function saveHotel(array $data){
         $this->db->insert('hotels',$data);
     }
