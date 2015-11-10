@@ -3,7 +3,7 @@
 $app['db.options'] = [
     'driver' => 'pdo_mysql',
     'host' => 'localhost',
-    'dbname' => 'tallersilex',
+    'dbname' => 'hotelperlas',
     'user' => 'tallersilex',
     'password' => 'tallersilex',
     'charset' => 'utf8',
