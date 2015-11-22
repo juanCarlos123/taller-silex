@@ -12,7 +12,7 @@ Requerimientos
 ### virtual host
 
 <code>
-    <VirtualHost *:80>
+    <VirtualHost *:80 >
     ServerName hotel.dev
     DocumentRoot /var/www/html/hotelPerlas/web
     ServerAdmin juancarlos@indava.com
