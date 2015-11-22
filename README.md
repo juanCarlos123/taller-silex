@@ -16,11 +16,12 @@ Requerimientos
     ServerName hotel.dev
     DocumentRoot /var/www/html/hotelPerlas/web
     ServerAdmin juancarlos@indava.com
-
+</pre>
+<code>
     <Directory /var/www/html/hotelPerlas >
         AllowOverride All
         Order allow,deny
         Allow from all
     </Directory>
     </VirtualHost>
-</pre>
+</code>
