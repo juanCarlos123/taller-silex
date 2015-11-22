@@ -25,12 +25,13 @@ Requerimientos
 ```
 
 ### corriendo migraciones
+En la carpeta del proyecto
 <code>
 php bin/console m:m
 </code>
 
 ### bajando dependencias 
-en la carpeta del proyecto 
+En la carpeta del proyecto 
 <code>
 composer install
 </code>
