@@ -7,7 +7,8 @@ Requerimientos
 * php 5.6
 * Mysql Server 
 * modulos para php y apache: libapache2-mod-auth-mysql, php5-cli, php5-curl, php5-mysql, php5-intl
-* mod rewrite activado
+* modulo rewrite activado
+* composer
 
 ### virtual host
 ```
