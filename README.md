@@ -22,3 +22,14 @@ Requerimientos
     </Directory>
     </VirtualHost>
 ```
+
+### corriendo migraciones
+<code>
+php bin/console m:m
+</code>
+
+### bajando dependencias 
+en la carpeta del proyecto 
+<code>
+composer install
+</code>
