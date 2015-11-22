@@ -12,16 +12,14 @@ Requerimientos
 ### virtual host
 
 <pre>
-    <VirtualHost *:80>
+    "<VirtualHost *:80>
     ServerName hotel.dev
     DocumentRoot /var/www/html/hotelPerlas/web
     ServerAdmin juancarlos@indava.com
-</pre>
-<code>
     <Directory /var/www/html/hotelPerlas >
         AllowOverride All
         Order allow,deny
         Allow from all
     </Directory>
-    </VirtualHost>
-</code>
+    </VirtualHost>"
+</pre>
