@@ -113,8 +113,8 @@ Class HotelController
     }
         
     public function indexHotels() {
-        return $this->view->render('index.twig',[
-            'message' => '',
+        return $this->view->render('layout.html.twig',[
+            'message' => 'hotel las perlas',
             'title' => 'hoteles en el sistema',
             'hotels' => $this->hotelModel->getHotels()
         ]);

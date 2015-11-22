@@ -1,14 +1,18 @@
-<div class="warning">{{message}}</div>
-<h1>{{title}}</h1>
-<div class="content">
-    <div class="table">
-        {% for hotel in hotels %}
-            <div class="row">
-                <div class="col col-name"> {{hotel.name}}</div>
-                <div class="col col-address">{{hotel.address}}</div>
-                <div class="col col-mobile">{{hotel.mobile}}</div>
-                <div class="col col-phone">{{hotel.phone}}</div>
-            </div>
-        {% endfor %}
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <div class="warning">{{message}}</div>
+    <h1>{{title}}</h1>
+    <div class="content">
+        <div class="table">
+            {% for hotel in hotels %}
+                <div class="row">
+                    <div class="col col-name"> {{hotel.name}}</div>
+                    <div class="col col-address">{{hotel.address}}</div>
+                    <div class="col col-mobile">{{hotel.mobile}}</div>
+                    <div class="col col-phone">{{hotel.phone}}</div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
+{% endblock %}
