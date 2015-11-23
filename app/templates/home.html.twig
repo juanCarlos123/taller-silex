@@ -1,0 +1,17 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <div class="two-columns">
+        <div class="imageM div-content-left">
+            <img src="/img/home.jpg" alt="home" >
+        </div>
+        <div class="menu div-content-righ">
+            <ul class="ulmenu">
+                <li class="limenu"><a href="{{ path('indexHotels') }}">Hoteles</a></li>
+                <li class="limenu"><a href="{{ path('indexHotels') }}">Habitaciones</a></li>
+                <li class="limenu"><a href="{{ path('indexHotels') }}">Tipos de habitacion</a></li>
+                <li class="limenu"><a href="{{ path('indexHotels') }}">Usuarios</a></li>
+            </ul>
+        </div>
+    </div>
+   {% endblock %}

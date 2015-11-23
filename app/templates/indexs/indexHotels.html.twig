@@ -1,0 +1,12 @@
+{% for hotel in hotels %}
+    <div class="row">
+    <div class="col col-name"> {{hotel.name}}</div>
+    <div class="col col-address">{{hotel.address}}</div>
+    <div class="col col-mobile">{{hotel.mobile}}</div>
+    <div class="col col-phone">{{hotel.phone}}</div>
+    </div>
+    <div class="actions">
+        <a href="{{path('viewHotel',{'id': hotel.hotel_id})}}"> Ver </a>
+    </div>
+{% endfor %}
+

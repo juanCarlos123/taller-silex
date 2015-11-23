@@ -111,12 +111,28 @@ Class HotelController
             'hotels' => $this->hotelModel->getHotels()
         ]);
     }
-        
+
     public function indexHotels() {
-        return $this->view->render('layout.html.twig',[
+        return $this->view->render('index.html.twig',[
             'message' => 'hotel las perlas',
             'title' => 'hoteles en el sistema',
             'hotels' => $this->hotelModel->getHotels()
         ]);
     }
+
+    public function viewHotel($id) {
+        if (!is_null($id)) {
+            $hotel = $this->hotelModel->getHotel($id);
+            if (!is_null($hotel)) {
+                return $this->view->render('view.html.twig',[
+                    'title' => $hotel['name'],
+                    'hotel' => $hotel
+                ]);
+            }
+        }
+        return $this->view->render('error.html.twig', [
+            'title' => "hotel no encontrado verifica el id",
+        ]);
+    }
+
 }

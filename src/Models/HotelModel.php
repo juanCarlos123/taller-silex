@@ -77,7 +77,7 @@ Class HotelModel
             $queryHotel = $this->db->createQueryBuilder();
             $queryHotel->select('*')
                 ->from('hotels','h')
-                ->where('id = :id')
+                ->where('hotel_id = :id')
                 ->orderBy('h.name','ASC')
                 ->setParameter('id',$id)
                 ;

@@ -1,3 +1,70 @@
-body {
-    background-color: gray;
+body  {
+    background-color:#6E6E6E;
+}
+
+#content {
+    width:100%;
+    height:60%;
+}
+
+.two-columns {
+    width: 100%;
+    display:inline-flex;
+}
+
+#footer {
+    width:100%;
+    padding:20px;
+    text-align: left;
+    background-color: ##BDBDBD;
+}
+
+#header {
+    width: 100%;
+    display: inline-flex;
+}
+
+.menu {
+   background-color: transparent; 
+   margin: auto;
+}
+
+.ulmenu {
+    text-align: center;
+    list-style: none;
+}
+
+.logo_left {
+    width: 20%;
+    text-align: left;
+}
+
+.imageM {
+    width: 60%;
+}
+
+.imageM img {
+    width: 100%;
+}
+
+.titles {
+    width: 60%;
+    text-align: center;
+}
+
+.logo_right {
+    width: 20%;
+    text-align: right;
+}
+
+.limenu {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.limenu a {
+    color: white;
+    font-size:18px;
+    margin: 10px;
+    padding: auto;
 }

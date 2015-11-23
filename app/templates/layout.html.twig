@@ -6,27 +6,27 @@
     <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
 </head>
 <body>
-    <div class="header">
+    <div id="header">
       <div class="col-md-4 logo_left">
-        <img src="/img/logo_blanco.png"  width="100px" height="100px"/><
+        <img src="/img/logo_blanco.png"  width="100px" height="100px"/>
       </div>
       <div class="col-md-4 titles">
-        <h1>FACULTAD DE INGENIERIA</h1>
-        <h2>UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO </h2>
-        <h2>Gestor Hotelero"Las Perlas"</h2>
+        <h2>FACULTAD DE INGENIERIA</h3>
+        <h3>UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO </h333>
+        <h4>Gestor Hotelero "Las Perlas"</h4>
       </div>
       <div class="col-md-4 logo_right">
-        <img src="/img/blanco_unam.png" width="100px" height="100px" /><
+        <img src="/img/blanco_unam.png" width="100px" height="100px" />
       </div>
     </div>
-    <div class="menu">
-
-    </div>
-    <div class="content">
+    <div id="content">
        {%block content %}  {% endblock%}
     </div>
-    <div class="footer">
-        <h3>Admistración de Proyectos de Software<br>Facultad de Ingeniería</h3>
+    <div id="footer">
+        {% block footer %}
+            <i>Admistración de Proyectos de Software<br>Facultad de Ingeniería</i>
+            <i>Hotel las perlas S.A. de C.V.</i>
+        {% endblock %}
     </div>
 </body>
 </html>
