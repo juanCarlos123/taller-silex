@@ -25,9 +25,9 @@ Requerimientos
 ```
 
 ### Configurar la base de datos
-En la carpeta app/config ubicar el archivo prod.php y modificar el siguiente arreglo con los parametros de nuestra baseo
+En la carpeta app/config ubicar el archivo prod.php y modificar el siguiente arreglo con los parametros de nuestra base de datos
 
-<code>
+```
 $app['db.options'] = [
     'driver' => 'pdo_mysql',
     'host' => 'localhost',
@@ -36,7 +36,7 @@ $app['db.options'] = [
     'password' => 'tallersilex',
     'charset' => 'utf8',
 ];
-</code>
+```
 
 ### corriendo migraciones
 En la carpeta del proyecto
