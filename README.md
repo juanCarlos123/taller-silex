@@ -24,6 +24,20 @@ Requerimientos
     </VirtualHost>
 ```
 
+### Configurar la base de datos
+En la carpeta app/config ubicar el archivo prod.php y modificar el siguiente arreglo con los parametros de nuestra baseo
+
+<code>
+$app['db.options'] = [
+    'driver' => 'pdo_mysql',
+    'host' => 'localhost',
+    'dbname' => 'hotelperlas',
+    'user' => 'tallersilex',
+    'password' => 'tallersilex',
+    'charset' => 'utf8',
+];
+</code>
+
 ### corriendo migraciones
 En la carpeta del proyecto
 <code>
@@ -35,3 +49,4 @@ En la carpeta del proyecto
 <code>
 composer install
 </code>
+(Opcional)
