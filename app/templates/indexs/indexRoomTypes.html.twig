@@ -1,0 +1,10 @@
+{% for roomtype in roomtypes %}
+    <div class="row">
+        <div class="col col-name"> {{roomtype.name}}</div>
+        <div class="col col-mobile">{{roomtype.description}}</div>
+    </div>
+    <div class="actions">
+        <a href="{{path('viewRoomType',{'id': roomtype.roomtype_id})}}"> Ver </a>
+    </div>
+{% endfor %}
+

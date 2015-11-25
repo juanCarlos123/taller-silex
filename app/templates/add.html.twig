@@ -1,0 +1,17 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<div>
+    <div class="warning">{{title}}</div>
+    {% if hotel_id is defined %}
+        <form action="{{ path('editHotel',{'id': hotel_id}) }}" method="post">
+    {% elseif roomtype_id is defined  %}
+        <form action="{{ path('editRoomType',{'id':roomtype_id}) }}" method="post">
+    {% else %}
+        <form action="" method="post">
+    {% endif%}
+        {{form_widget(form)}}
+        <input type="submit" name="submit" value="save"/>
+    </form>
+</div>
+{% endblock %}

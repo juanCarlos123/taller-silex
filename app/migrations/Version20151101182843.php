@@ -19,8 +19,8 @@ class Version20151101182843 extends AbstractMigration
         $hotelTable->addColumn('hotel_id', 'integer', ['autoincrement' => true, 'length' => 10]);
         $hotelTable->addColumn('name', 'string', ['length' => 30]);
         $hotelTable->addColumn('address', 'string', ['length' => 150]);
-        $hotelTable->addColumn('mobile', 'string', ['length' => 20]);
-        $hotelTable->addColumn('phone', 'string', ['length' => 20]);
+        $hotelTable->addColumn('mobile', 'string', ['length' => 20,'notnull' => false]);
+        $hotelTable->addColumn('phone', 'string', ['length' => 20, 'notnull' => false]);
         $hotelTable->addColumn('date_created', 'datetime',[
             'columnDefinition' => 'timestamp default current_timestamp'
         ]);
@@ -31,7 +31,7 @@ class Version20151101182843 extends AbstractMigration
         $roomTable->addColumn('room_id', 'integer', ['autoincrement' => true, 'length' => 10]);
         $roomTable->addColumn('date_arrival', 'date');
         $roomTable->addColumn('date_go', 'date');
-        $roomTable->addColumn('services', 'string', ['length' => 150]);
+        $roomTable->addColumn('services', 'string', ['length' => 150, 'notnull' => false]);
         $roomTable->addColumn('hotel_id','integer',['length'=>10]);
         $roomTable->addColumn('roomtype_id','integer',['length'=>10]);
         $roomTable->addColumn('user_id','integer',['length'=>10]);

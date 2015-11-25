@@ -1,0 +1,11 @@
+<div class="row">
+    <label for="">Nombre: </label><div class="col col-name"> {{hotel.name}}</div>
+    <label for="">Dirección: </label><div class="col col-address">{{hotel.address}}</div>
+    <label for="">Celular: </label><div class="col col-mobile">{{hotel.mobile}}</div>
+    <label for="">Telefono: </label><div class="col col-phone">{{hotel.phone}}</div>
+    <label for="">Número de habitaciones: </label><div class="col col-phone">{{hotel.num_rooms}}</div>
+</div>
+<div class="actions">
+    <a href="{{ path('editHotel',{'id': hotel.hotel_id})}}">Editar hotel</a>
+    <a href="{{ path('addHotel')}}">Agregar hotel</a>
+</div>

@@ -1,6 +1,16 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-    <h1>{{title}}</h1>
-    <h1>{{hotel.0.name}}<h1>
+    <div class="view">
+        <h1>{{title}}</h1>
+        {% if roomtypes is defined %}
+            {% for roomtype in roomtypes %}
+                {% include "views/roomType.html.twig"%}
+            {% endfor%}
+        {% elseif hotels is defined %}
+            {% for hotel in hotels %}
+                {% include "views/hotel.html.twig" %}
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}

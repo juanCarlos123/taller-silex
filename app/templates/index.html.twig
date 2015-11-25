@@ -5,7 +5,11 @@
     <h1>{{title}}</h1>
     <div class="content">
         <div class="table">
-            {% include "indexs/indexHotels.html.twig" %}
+            {% if roomtypes is defined %}
+               {% include "indexs/indexRoomTypes.html.twig" %}
+            {% elseif hotels is defined %}
+                {% include "indexs/indexHotels.html.twig" %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

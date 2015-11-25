@@ -40,84 +40,162 @@ Class HotelController
     }
 
     public function addHotel(Request $request) {
-        $form = $this->formFactory->createBuilder('form')
-            ->add('name','text',['attr' => ['class' => 'form-control']])
-            ->add('address','text',['attr' => ['class' => 'form-control']])
-            ->add('mobile','text',['attr' => ['class' => 'form-control']])
-            ->add('phone','text',['attr' => ['class' => 'form-control']])
-            ->getForm()
-            ;
 
-        $title = 'hoteles en el sistema';
+        $form = $this->generateForm();
 
         if($request->getMethod() == "POST"){
+        
             $form->handleRequest($request);
+
             if($form->isValid()) {
+
                 $data = $form->getData();
                 $this->hotelModel->saveHotel($data);
-                return $this->view->render('index.twig',[
+
+                return $this->view->render('index.html.twig',[
                     'message' => 'hotel salvado correctamente',
-                    'title' => $title,
+                    'title' => 'Hoteles',
                     'hotels' => $this->hotelModel->getHotels()
                 ]);
             }
 
-            return $this->view->render('index.twig',[
-                'message' => 'Error al guardar el hotel',
-                'title' => $title,
-                'hotels' => $this->hotelModel->getHotels()
-            ]);
+            return $this->view->render('error.html.twig',[
+                'title' => 'Error',
+                'error' => 'Formulario no valido']
+            );
         }
 
-        return $this->view->render('edit.twig', ['form' => $form->createView(),'message' => '','title' => 'Editar Hotel']);
+        return $this->view->render('add.html.twig', [
+            'form' => $form->createView(),
+            'message' => '',
+            'title' => 'Agregar Hotel']
+        );
     }
 
     public function editHotel(Request $request) {
-        $title = 'Hoteles en el sistema';
+
         if($request->getMethod() == "POST") {
+
+            $form = $this->generateForm();
             $form->handleRequest($request);
+
             if($form->isValid()) {
                 $data = $form->getData();
-                $this->hotelModel->updateHotel($data);
-                return $this->view->render('index.twig',[
+                $this->hotelModel->updateHotel($data, $request->get('id'));
+                return $this->view->render('index.html.twig',[
                     'message' => 'Hotel actualizado correctamente',
-                    'title' => $title,
+                    'title' => 'Hoteles',
                     'hotels' => $this->hotelModel->getHotels()
                 ]);
             }
-            return $this->view->render('index.twig',[
-                'message' => "error al actualizar el hotel",
-                'title' => $title,
-                'hotels' => $this->hotelModel->getHotels()
+
+            return $this->view->render('error.html.twig',[
+                'title' => 'Error',
+                'error' => "Formulario invalido",
             ]);
             
         }
-        $id = $request->get('id_hotel');
-        $hotel = $this->HotelModel->getHotel($id);
-        if(!empty($hotels)) {
-            error_log(print_r($hotel,true));
-            /*$form = $this->formFactory->createBuilder('form')
-                ->add('name','text',['attr' => ['class' => 'form-control'], 'value' => ])
-                ->add('address','text',['attr' => ['class' => 'form-control'],'value' => ])
-                ->add('mobile','text',['attr' => ['class' => 'form-control'], 'value' => ])
-                ->add('phone','text',['attr' => ['class' => 'form-control'], 'value' => ])
-                ->getForm()
-                ;*/
-                return $this->view->render('index.twig',['form' => '']);
+
+        $id = $request->get('id');
+        $hotel = $this->hotelModel->getHotel($id);
+
+        if(!empty($hotel)) {
+            return $this->view->render('add.html.twig',[
+                'title' => 'Editar Hotel',
+                'form' => $this->generateForm($hotel)->createView(),
+                'hotel_id' => $id
+            ]);
         }
-        return $this->view->render('index.twig',[
-            'message' => "Hotel Invalido",
-            'title' => $title,
-            'hotels' => $this->hotelModel->getHotels()
+
+        return $this->view->render('error.html.twig',[
+            'title' => 'Error',
+            'error' => "Hotel Invalido"
         ]);
     }
 
     public function indexHotels() {
         return $this->view->render('index.html.twig',[
-            'message' => 'hotel las perlas',
-            'title' => 'hoteles en el sistema',
+            'message' => '',
+            'title' => 'Hoteles',
             'hotels' => $this->hotelModel->getHotels()
         ]);
+    }
+
+    protected function generateForm($data = null) {
+        if(is_null($data)) {
+             return $this->formFactory->createBuilder('form')
+                 ->add('name','text',[
+                     'attr' => [
+                         'class' => 'form-control'
+                     ],
+                     'label' => 'Nombre'
+                 ])
+                 ->add('address','text',[
+                     'attr' => [
+                         'class' => 'form-control'
+                     ],
+                     'label' => 'Dirección'
+                 ])
+                 ->add('num_rooms','text',[
+                     'attr' => [
+                         'class' => 'form-control'
+                     ],
+                     'label' => 'Número de habitaciones'
+                 ])
+                 ->add('mobile','text',[
+                     'attr' => [
+                         'class' => 'form-control'
+                     ],
+                     'label' => 'Celular'
+                 ])
+                 ->add('phone','text',[
+                     'attr' => [
+                         'class' => 'form-control'
+                     ],
+                     'label' => 'Telefono'
+                 ])
+                ->getForm()
+                ;
+        } else {
+            return $this->formFactory->createBuilder('form')
+                ->add('name','text',[
+                    'attr' => [
+                        'class' => 'form-control'
+                    ], 
+                    'data' => $data[0]['name'],
+                    'label' => 'Nombre'
+                ])
+                ->add('address','text',[
+                    'attr' => [
+                        'class' => 'form-control'
+                    ],
+                    'data' => $data[0]['address'],
+                    'label' => 'Dirección'
+                ])
+                ->add('num_rooms','text',[
+                    'attr' => [
+                        'class' => 'form-control'
+                    ],
+                    'data' => $data[0]['num_rooms'],
+                    'label' => 'Número de habitaciones',
+                ])
+                ->add('mobile','text',[
+                    'attr' => [
+                        'class' => 'form-control'
+                    ],
+                    'data' => $data[0]['mobile'],
+                    'label' => 'Celular'
+                ])
+                ->add('phone','text',[
+                    'attr' => [
+                        'class' => 'form-control'
+                    ],
+                    'data' => $data[0]['phone'],
+                    'label' => 'Telefono'
+                ])
+                ->getForm()
+                ;
+        }
     }
 
     public function viewHotel($id) {
@@ -125,13 +203,14 @@ Class HotelController
             $hotel = $this->hotelModel->getHotel($id);
             if (!is_null($hotel)) {
                 return $this->view->render('view.html.twig',[
-                    'title' => $hotel['name'],
-                    'hotel' => $hotel
+                    'title' => $hotel[0]['name'],
+                    'hotels' => $hotel
                 ]);
             }
         }
         return $this->view->render('error.html.twig', [
-            'title' => "hotel no encontrado verifica el id",
+            'title' => 'Error',
+            'error' => "hotel no encontrado verifica el id",
         ]);
     }
 

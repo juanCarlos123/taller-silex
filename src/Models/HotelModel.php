@@ -37,7 +37,11 @@ Class HotelModel
      */
     public function updateHotel($data, $id = null) {
         if(!is_null($id)){
-            $result = $this->db->update($data,['id' => $id]);
+            $result = $this->db->update(
+                'hotels',
+                $data,
+                ['hotel_id' => $id]
+            );
             if($result < 1) {
                 return false;
             }

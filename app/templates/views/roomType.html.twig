@@ -1,0 +1,10 @@
+<div class="row">
+    <label for="">Nombre: </label><div class="col col-name"> {{roomtype.name}}</div>
+    <label for="">Descripción: </label><div class="col col-address">{{roomtype.description}}</div>
+    <label for="">Costo: </label><div class="col col-mobile">{{roomtype.cost}}</div>
+    <label for="">Fecha de creación: </label><div class="col col-mobile">{{roomtype.date_created}}</div>
+</div>
+<div class="actions">
+    <a href="{{ path('editRoomType',{'id': roomtype.roomtype_id})}}">Editar tipo de habitación</a>
+    <a href="{{ path('addRoomType')}}">Agregar Tipo de habitación</a>
+</div>
